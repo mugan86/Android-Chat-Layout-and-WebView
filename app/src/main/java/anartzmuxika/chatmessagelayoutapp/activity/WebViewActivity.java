@@ -27,6 +27,13 @@ public class WebViewActivity extends AppCompatActivity {
          *****************************************************************/
         setContentView(R.layout.activity_web_view);
 
+        /*// Create an object of our Custom Gesture Detector Class
+        CustomGestureDetector customGestureDetector = new CustomGestureDetector();
+        // Create a GestureDetector
+        mGestureDetector = new GestureDetector(this, customGestureDetector);
+        // Attach listeners that'll be called for double-tap and related gestures
+        mGestureDetector.setOnDoubleTapListener(customGestureDetector);*/
+
         myWebView = (WebView) findViewById(R.id.myWebView);
         if( savedInstanceState == null ) {
             String url =
@@ -34,7 +41,11 @@ public class WebViewActivity extends AppCompatActivity {
             // do something with this URL.
             loadURL(url);
         }
+        //Only disabled the horizontal scrolling:
+        myWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
     }
+
+
 
     private void loadURL(String url)
     {
@@ -60,7 +71,9 @@ public class WebViewActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
     }
+
 }
